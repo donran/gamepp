@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/donran/dev/github/donran/gamepp/build",
+  "command": "/usr/bin/c++   -std=gnu++17 -o CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/objects/vbo.cpp",
+  "file": "/home/donran/dev/github/donran/gamepp/src/graphics/objects/vbo.cpp",
+  "output": "CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o"
+},
+{
+  "directory": "/home/donran/dev/github/donran/gamepp/build",
+  "command": "/usr/bin/c++   -std=gnu++17 -o CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/test.cpp",
+  "file": "/home/donran/dev/github/donran/gamepp/src/graphics/test.cpp",
+  "output": "CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o"
+},
+{
+  "directory": "/home/donran/dev/github/donran/gamepp/build",
+  "command": "/usr/bin/c++   -std=gnu++17 -o CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/textures/texture.cpp",
+  "file": "/home/donran/dev/github/donran/gamepp/src/graphics/textures/texture.cpp",
+  "output": "CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o"
+},
+{
+  "directory": "/home/donran/dev/github/donran/gamepp/build",
+  "command": "/usr/bin/c++   -std=gnu++17 -o CMakeFiles/gamepp_bin.dir/src/main.cpp.o -c /home/donran/dev/github/donran/gamepp/src/main.cpp",
+  "file": "/home/donran/dev/github/donran/gamepp/src/main.cpp",
+  "output": "CMakeFiles/gamepp_bin.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/donran/dev/github/donran/gamepp/build",
+  "command": "/usr/bin/c++   -std=gnu++17 -o CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o -c /home/donran/dev/github/donran/gamepp/src/stb/image.cpp",
+  "file": "/home/donran/dev/github/donran/gamepp/src/stb/image.cpp",
+  "output": "CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o"
+}
+]

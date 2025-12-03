@@ -1,0 +1,10 @@
+IndentWidth: 4
+AllowShortBlocksOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+AlwaysBreakTemplateDeclarations: true
+BreakAfterAttributes: Always
+ColumnLimit: 100
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
