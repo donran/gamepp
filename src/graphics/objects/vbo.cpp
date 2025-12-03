@@ -21,7 +21,7 @@ void VBO::SetAttributeI(unsigned int index, int size, GLenum type, GLsizei strid
     glVertexAttribIPointer(index, size, type, stride, ptr);
     // glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
-void VBO::Attributes2(std::function<void((struct VertexBufferAttributes *))> attrFunc) {
+void VBO::Attributes(std::function<void((struct VertexBufferAttributes *))> attrFunc) {
     m_attributes.attributes.clear();
     m_attributes.attributes.resize(0);
     attrFunc(&m_attributes);
@@ -43,6 +43,7 @@ void VBO::Attributes2(std::function<void((struct VertexBufferAttributes *))> att
         /// ????????????????
         offset += ((unsigned long)attr.size * _type_to_size(attr.type));
     }
+    m_attributes.size = stride;
 
     // Unbind();
 }

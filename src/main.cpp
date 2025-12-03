@@ -60,48 +60,24 @@ int main(int argc, const char **argv) {
         .spriteId = 0,
     }};
 
-    VAO vertexArray;
     VBO quad;
 
-    vertexArray.Bind();
-
-    quad.BufferData(sizeof(quadVertices), quadVertices);
-    quad.Attributes2([](struct VertexBufferAttributes *attrs) {
+    quad.Attributes([](struct VertexBufferAttributes *attrs) {
         attrs->Add(0, GL_FLOAT, 2); // Position
         attrs->Add(1, GL_FLOAT, 2); // Color
     });
+    quad.BufferData(sizeof(quadVertices) / 4, quadVertices);
 
     VBO instancedVertex;
-    instancedVertex.BufferData((6 * sizeof(float) + sizeof(int)) * rectinfos.size(), &rectinfos[0],
-                               GL_DYNAMIC_DRAW);
-    instancedVertex.Attributes2([](struct VertexBufferAttributes *attrs) {
+    instancedVertex.Attributes([](struct VertexBufferAttributes *attrs) {
         attrs->Add(2, GL_FLOAT, 2, 1); // Position
         attrs->Add(3, GL_FLOAT, 4, 1); // Color
         attrs->Add(4, GL_INT, 1, 1);   // SpriteID
     });
+    instancedVertex.BufferData(rectinfos.size(), &rectinfos[0], GL_DYNAMIC_DRAW);
     instancedVertex.Unbind();
 
-    // instancedVertex.Bind();
-    // instancedVertex.BufferData((6 * sizeof(float) + sizeof(int)) * rectinfos.size(),
-    // &rectinfos[0],
-    //                            GL_DYNAMIC_DRAW);
-    // unsigned int instancedVertexSize = 6 * sizeof(float) + sizeof(int);
-    // instancedVertex.SetAttribute(2, 2, GL_FLOAT, GL_FALSE, instancedVertexSize, 0); // position
-    // instancedVertex.SetAttribute(3, 4, GL_FLOAT, GL_FALSE, instancedVertexSize,
-    //                              (void *)(2 * sizeof(float))); // color
-    // instancedVertex.SetAttributeI(4, 1, GL_INT, instancedVertexSize,
-    //                               (void *)(6 * sizeof(float))); // spriteId
-    // instancedVertex.Unbind();
-
-    // vertexArray.EnableVertexArrayAttribute(0);
-    // vertexArray.EnableVertexArrayAttribute(1);
-    // vertexArray.EnableVertexArrayAttribute(2);
-    // vertexArray.EnableVertexArrayAttribute(3);
-    // vertexArray.EnableVertexArrayAttribute(4);
-
-    // glVertexAttribDivisor(2, 1);
-    // glVertexAttribDivisor(3, 1);
-    // glVertexAttribDivisor(4, 1);
+    VAO vertexArray;
     vertexArray.Bind();
     vertexArray.EnableVertexBufferObjects({quad, instancedVertex});
     vertexArray.Unbind();
@@ -139,8 +115,7 @@ int main(int argc, const char **argv) {
         if (time - lastSwitch > 0.5) {
             lastSwitch = time;
             rectinfos[0].spriteId = (rectinfos[0].spriteId + 1) % (16 * 16);
-            instancedVertex.UpdateData((6 * sizeof(float) + sizeof(int)) * rectinfos.size(),
-                                       &rectinfos[0]);
+            instancedVertex.UpdateData(rectinfos.size(), &rectinfos[0]);
             // std::cout << "switching to " << rectinfos[0].spriteId << std::endl;
         }
         glClear(GL_COLOR_BUFFER_BIT);

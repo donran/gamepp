@@ -31,6 +31,7 @@ struct VertexAttribute {
 
 struct VertexBufferAttributes {
     std::vector<VertexAttribute> attributes;
+    size_t size;
 
     void Add(unsigned int index, GLenum type, GLsizei size, unsigned int divisor = 0) {
         attributes.push_back((struct VertexAttribute){
@@ -67,31 +68,21 @@ class VBO {
         glVertexAttribDivisor(index, divisor);
     }
 
-    void BufferData(GLsizeiptr size, const GLvoid *data, GLenum usage = GL_STATIC_DRAW) {
+    void BufferData(GLsizeiptr count, const GLvoid *data, GLenum usage = GL_STATIC_DRAW) {
+        // TODO: uh should we warn if attributes aren't created yet?
         Bind();
-        glBufferData(GL_ARRAY_BUFFER, size, data, usage);
+        glBufferData(GL_ARRAY_BUFFER, count * m_attributes.size, data, usage);
         // Unbind();
     }
 
-    void UpdateData(GLsizeiptr size, const GLvoid *data, GLintptr offset = 0) {
+    void UpdateData(GLsizeiptr count, const GLvoid *data, GLintptr offset = 0) {
+        // TODO: uh should we warn if attributes aren't created yet?
         Bind();
-        glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
+        glBufferSubData(GL_ARRAY_BUFFER, offset, count * m_attributes.size, data);
         Unbind();
     }
 
-    struct VertexBufferAttributes *Attributes(size_t count) {
-        m_attributes.attributes.clear();
-        m_attributes.attributes.resize(0);
-        return &m_attributes;
-
-        // bool is_glm_vec = std::is_base_of_v<glm::vec1, T> || std::is_base_of_v<glm::vec2, T> ||
-        //                   std::is_base_of_v<glm::vec3, T> || std::is_base_of_v<glm::vec4, T>;
-        // std::cout << "hello: " << std::is_array<T>::value << std::endl;
-        // if (is_glm_vec) {
-        //     typ = GL_FLOAT;
-        // }
-    }
-    void Attributes2(std::function<void((struct VertexBufferAttributes *))> attrfunc);
+    void Attributes(std::function<void((struct VertexBufferAttributes *))> attrfunc);
 
     std::vector<unsigned int> AttributeIndices() {
         auto res = std::vector<unsigned int>();
