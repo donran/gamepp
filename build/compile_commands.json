@@ -25,12 +25,6 @@
 },
 {
   "directory": "/home/donran/dev/github/donran/gamepp/build",
-  "command": "/usr/bin/c++   -std=gnu++23 -o CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/test.cpp",
-  "file": "/home/donran/dev/github/donran/gamepp/src/graphics/test.cpp",
-  "output": "CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o"
-},
-{
-  "directory": "/home/donran/dev/github/donran/gamepp/build",
   "command": "/usr/bin/c++   -std=gnu++23 -o CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/textures/texture.cpp",
   "file": "/home/donran/dev/github/donran/gamepp/src/graphics/textures/texture.cpp",
   "output": "CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o"

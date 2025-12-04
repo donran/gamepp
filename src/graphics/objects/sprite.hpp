@@ -51,6 +51,13 @@ class SpriteBuffer {
     }
     void Buffer(std::vector<Sprite> &rectinfos);
     void Draw(GLsizei count);
+    void Bind() {
+        m_instancedBuffer.Bind();
+    }
+
+    void Unbind() {
+        m_instancedBuffer.Bind();
+    }
 };
 
 }; // namespace enginepp::graphics::objects

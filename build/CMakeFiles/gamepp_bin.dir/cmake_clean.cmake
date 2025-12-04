@@ -7,8 +7,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o.d"
   "CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o"
   "CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o.d"
-  "CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o"
-  "CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o.d"
   "CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o"
   "CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o.d"
   "CMakeFiles/gamepp_bin.dir/src/main.cpp.o"

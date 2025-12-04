@@ -225,30 +225,6 @@ src/graphics/shaders/shader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.s
 .PHONY : src/graphics/shaders/shader.cpp.s
 
-src/graphics/test.o: src/graphics/test.cpp.o
-.PHONY : src/graphics/test.o
-
-# target to build an object file
-src/graphics/test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o
-.PHONY : src/graphics/test.cpp.o
-
-src/graphics/test.i: src/graphics/test.cpp.i
-.PHONY : src/graphics/test.i
-
-# target to preprocess a source file
-src/graphics/test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.i
-.PHONY : src/graphics/test.cpp.i
-
-src/graphics/test.s: src/graphics/test.cpp.s
-.PHONY : src/graphics/test.s
-
-# target to generate assembly for a file
-src/graphics/test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.s
-.PHONY : src/graphics/test.cpp.s
-
 src/graphics/textures/texture.o: src/graphics/textures/texture.cpp.o
 .PHONY : src/graphics/textures/texture.o
 
@@ -342,9 +318,6 @@ help:
 	@echo "... src/graphics/shaders/shader.o"
 	@echo "... src/graphics/shaders/shader.i"
 	@echo "... src/graphics/shaders/shader.s"
-	@echo "... src/graphics/test.o"
-	@echo "... src/graphics/test.i"
-	@echo "... src/graphics/test.s"
 	@echo "... src/graphics/textures/texture.o"
 	@echo "... src/graphics/textures/texture.i"
 	@echo "... src/graphics/textures/texture.s"

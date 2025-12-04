@@ -125,24 +125,10 @@ CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/donran/dev/github/donran/gamepp/src/graphics/shaders/shader.cpp -o CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.s
 
-CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o: CMakeFiles/gamepp_bin.dir/flags.make
-CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o: /home/donran/dev/github/donran/gamepp/src/graphics/test.cpp
-CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o: CMakeFiles/gamepp_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o -MF CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o.d -o CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/test.cpp
-
-CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/donran/dev/github/donran/gamepp/src/graphics/test.cpp > CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.i
-
-CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/donran/dev/github/donran/gamepp/src/graphics/test.cpp -o CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.s
-
 CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o: CMakeFiles/gamepp_bin.dir/flags.make
 CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o: /home/donran/dev/github/donran/gamepp/src/graphics/textures/texture.cpp
 CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o: CMakeFiles/gamepp_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o -MF CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o.d -o CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/textures/texture.cpp
 
 CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.i: cmake_force
@@ -156,7 +142,7 @@ CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.s: cmake_force
 CMakeFiles/gamepp_bin.dir/src/main.cpp.o: CMakeFiles/gamepp_bin.dir/flags.make
 CMakeFiles/gamepp_bin.dir/src/main.cpp.o: /home/donran/dev/github/donran/gamepp/src/main.cpp
 CMakeFiles/gamepp_bin.dir/src/main.cpp.o: CMakeFiles/gamepp_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/gamepp_bin.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/gamepp_bin.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gamepp_bin.dir/src/main.cpp.o -MF CMakeFiles/gamepp_bin.dir/src/main.cpp.o.d -o CMakeFiles/gamepp_bin.dir/src/main.cpp.o -c /home/donran/dev/github/donran/gamepp/src/main.cpp
 
 CMakeFiles/gamepp_bin.dir/src/main.cpp.i: cmake_force
@@ -170,7 +156,7 @@ CMakeFiles/gamepp_bin.dir/src/main.cpp.s: cmake_force
 CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o: CMakeFiles/gamepp_bin.dir/flags.make
 CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o: /home/donran/dev/github/donran/gamepp/src/stb/image.cpp
 CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o: CMakeFiles/gamepp_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o -MF CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o.d -o CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o -c /home/donran/dev/github/donran/gamepp/src/stb/image.cpp
 
 CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.i: cmake_force
@@ -187,7 +173,6 @@ gamepp_bin_OBJECTS = \
 "CMakeFiles/gamepp_bin.dir/src/graphics/objects/sprite.cpp.o" \
 "CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o" \
 "CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o" \
-"CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o" \
 "CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o" \
 "CMakeFiles/gamepp_bin.dir/src/main.cpp.o" \
 "CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o"
@@ -199,7 +184,6 @@ gamepp_bin: CMakeFiles/gamepp_bin.dir/src/graphics/objects/instanced.cpp.o
 gamepp_bin: CMakeFiles/gamepp_bin.dir/src/graphics/objects/sprite.cpp.o
 gamepp_bin: CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o
 gamepp_bin: CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o
-gamepp_bin: CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o
 gamepp_bin: CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o
 gamepp_bin: CMakeFiles/gamepp_bin.dir/src/main.cpp.o
 gamepp_bin: CMakeFiles/gamepp_bin.dir/src/stb/image.cpp.o
@@ -209,7 +193,7 @@ gamepp_bin: /usr/lib/x86_64-linux-gnu/libGLEW.so
 gamepp_bin: /usr/lib/x86_64-linux-gnu/libGLX.so
 gamepp_bin: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 gamepp_bin: CMakeFiles/gamepp_bin.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable gamepp_bin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable gamepp_bin"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gamepp_bin.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

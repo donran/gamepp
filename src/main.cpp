@@ -49,8 +49,7 @@ int main(int argc, const char **argv) {
     std::vector<Sprite> spriteObjs = {Sprite(glm::vec2(0, 0), 0)};
 
     SpriteBuffer sbo;
-    // sbo.Buffer(rectinfos);
-    sbo.Buffer(spriteObjs);
+    // sbo.Buffer(spriteObjs);
 
     // Texture
     glActiveTexture(GL_TEXTURE0);
@@ -67,29 +66,24 @@ int main(int argc, const char **argv) {
     shaderProgram.Use();
 
     Camera camera(WINDOW_WIDTH, WINDOW_HEIGHT);
+    glm::mat4 proj = camera.ProjectionMatrix();
+    glm::mat4 view = camera.ViewMatrix(glm::vec3(0.0f, 0.0f, 0.0f));
 
-    double lastSwitch = glfwGetTime();
+    shaderProgram.UniformMat4f("projection", &proj[0][0]);
+    shaderProgram.UniformMat4f("view", &view[0][0]);
+
+    double lastSwitch = 0; // glfwGetTime();
     while (!w->ShouldClose()) {
         auto time = glfwGetTime();
         if (time - lastSwitch > 0.5) {
             lastSwitch = time;
-            // rectinfos[0].spriteId = (rectinfos[0].spriteId + 1) % (16 * 16);
-            // sbo.Buffer(rectinfos);
             spriteObjs[0].SetSprite((spriteObjs[0].SpriteId() + 1) % (16 * 16));
             sbo.Buffer(spriteObjs);
         }
         glClear(GL_COLOR_BUFFER_BIT);
-        glm::mat4 proj = camera.ProjectionMatrix();
-        glm::mat4 view = camera.ViewMatrix(glm::vec3(0.0f, 0.0f, 0.0f));
-        // view = glm::mat4(1.0f);
-
-        shaderProgram.UniformMat4f("projection", &proj[0][0]);
-        shaderProgram.UniformMat4f("view", &view[0][0]);
-        // shaderProgram.UniformMat4f("model", &model[0][0]);
 
         glActiveTexture(GL_TEXTURE0);
         testTex->Bind();
-        // sbo.Draw(rectinfos.size());
         sbo.Draw(spriteObjs.size());
 
         w->SwapBuffers();

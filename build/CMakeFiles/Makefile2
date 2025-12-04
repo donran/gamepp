@@ -81,12 +81,12 @@ clean: CMakeFiles/gamepp_bin.dir/clean
 CMakeFiles/gamepp_bin.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target gamepp_bin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/donran/dev/github/donran/gamepp/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target gamepp_bin"
 .PHONY : CMakeFiles/gamepp_bin.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/gamepp_bin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/donran/dev/github/donran/gamepp/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/donran/dev/github/donran/gamepp/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/gamepp_bin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/donran/dev/github/donran/gamepp/build/CMakeFiles 0
 .PHONY : CMakeFiles/gamepp_bin.dir/rule

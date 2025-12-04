@@ -9,7 +9,7 @@ int enginepp::graphics::textures::GLTexture::SetTexture(stb::Image *img) {
     }
     this->Bind();
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->Width(), img->Height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, img->Data());
-    this->Unbind();
+    // this->Unbind();
 
     return 0;
 }

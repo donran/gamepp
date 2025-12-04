@@ -25,6 +25,14 @@ class InstancedBuffer {
         m_vertexArray.Unbind();
     }
 
+    void Bind() {
+        m_vertexArray.Bind();
+    }
+
+    void Unbind() {
+        m_vertexArray.Bind();
+    }
+
     void Enable() {
         m_vertexArray.Bind();
         m_vertexArray.EnableVertexBufferObjects({m_staticVertexBuffer, m_instancedVertexBuffer});
