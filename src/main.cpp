@@ -3,7 +3,7 @@
 #include "graphics/objects/rect.hpp"
 #include "graphics/objects/vao.hpp"
 #include "graphics/objects/vbo.hpp"
-#include "graphics/shaders.hpp"
+#include "graphics/shaders/shaders.hpp"
 #include "graphics/test.hpp"
 #include "graphics/textures/texture.hpp"
 #include "graphics/window.hpp"
@@ -60,6 +60,8 @@ int main(int argc, const char **argv) {
         .spriteId = 0,
     }};
 
+    VAO vertexArray;
+    vertexArray.Bind();
     VBO quad;
 
     quad.Attributes([](struct VertexBufferAttributes *attrs) {
@@ -77,8 +79,6 @@ int main(int argc, const char **argv) {
     instancedVertex.BufferData(rectinfos.size(), &rectinfos[0], GL_DYNAMIC_DRAW);
     instancedVertex.Unbind();
 
-    VAO vertexArray;
-    vertexArray.Bind();
     vertexArray.EnableVertexBufferObjects({quad, instancedVertex});
     vertexArray.Unbind();
 
