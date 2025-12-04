@@ -153,6 +153,30 @@ src/graphics/objects/instanced.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/objects/instanced.cpp.s
 .PHONY : src/graphics/objects/instanced.cpp.s
 
+src/graphics/objects/sprite.o: src/graphics/objects/sprite.cpp.o
+.PHONY : src/graphics/objects/sprite.o
+
+# target to build an object file
+src/graphics/objects/sprite.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/objects/sprite.cpp.o
+.PHONY : src/graphics/objects/sprite.cpp.o
+
+src/graphics/objects/sprite.i: src/graphics/objects/sprite.cpp.i
+.PHONY : src/graphics/objects/sprite.i
+
+# target to preprocess a source file
+src/graphics/objects/sprite.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/objects/sprite.cpp.i
+.PHONY : src/graphics/objects/sprite.cpp.i
+
+src/graphics/objects/sprite.s: src/graphics/objects/sprite.cpp.s
+.PHONY : src/graphics/objects/sprite.s
+
+# target to generate assembly for a file
+src/graphics/objects/sprite.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/objects/sprite.cpp.s
+.PHONY : src/graphics/objects/sprite.cpp.s
+
 src/graphics/objects/vbo.o: src/graphics/objects/vbo.cpp.o
 .PHONY : src/graphics/objects/vbo.o
 
@@ -309,6 +333,9 @@ help:
 	@echo "... src/graphics/objects/instanced.o"
 	@echo "... src/graphics/objects/instanced.i"
 	@echo "... src/graphics/objects/instanced.s"
+	@echo "... src/graphics/objects/sprite.o"
+	@echo "... src/graphics/objects/sprite.i"
+	@echo "... src/graphics/objects/sprite.s"
 	@echo "... src/graphics/objects/vbo.o"
 	@echo "... src/graphics/objects/vbo.i"
 	@echo "... src/graphics/objects/vbo.s"

@@ -59,10 +59,9 @@ class VBO {
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 
-    void SetAttribute(unsigned int index, int size, GLenum type, GLboolean normalized,
-                      GLsizei stride = -1, const GLvoid *ptr = (void *)0);
-    void SetAttributeI(unsigned int index, int size, GLenum type, GLsizei stride = -1,
-                       const GLvoid *ptr = (void *)0);
+    void SetAttribute(unsigned int index, int size, GLenum type, GLboolean normalized, GLsizei stride = -1,
+                      const GLvoid *ptr = (void *)0);
+    void SetAttributeI(unsigned int index, int size, GLenum type, GLsizei stride = -1, const GLvoid *ptr = (void *)0);
 
     void SetDivisor(unsigned int index, unsigned int divisor) {
         glVertexAttribDivisor(index, divisor);

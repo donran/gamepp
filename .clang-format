@@ -5,6 +5,7 @@ AlwaysBreakTemplateDeclarations: true
 BreakAfterAttributes: Always
 AllowShortLambdasOnASingleLine: false
 ColumnLimit: 120
+AlignEscapedNewlines: Left
 AlignConsecutiveMacros:
   Enabled: true
   AcrossEmptyLines: false

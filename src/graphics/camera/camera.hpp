@@ -10,11 +10,18 @@ class Camera {
 
     glm::mat4 m_projection;
 
-    glm::vec3 m_position = glm::vec3(0.0f, 0.0f, 3.0f);
+    glm::vec3 m_position = glm::vec3(0.0f, 0.0f, 1.0f);
     // glm::vec3 m_target = glm::vec3(0.0f, 0.0f, 0.0f);
 
     const glm::vec3 m_up = glm::vec3(0.0f, 1.0f, 0.0f);
     const glm::vec3 m_cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+
+    glm::mat4 flashCoords = {
+        1.0, 0.0,  0.0, 0.0, // X remains the same
+        0.0, -1.0, 0.0, 0.0, // Y is flipped
+        0.0, 0.0,  1.0, 0.0, // Z is removed (flattened)
+        0.0, 0.0,  0.0, 1.0,
+    };
 
   public:
     Camera(int window_width, int window_height) {
@@ -33,7 +40,11 @@ class Camera {
     }
 
     glm::mat4 ProjectionMatrix() {
-        return m_projection;
+        float s = 8;
+        auto proj = glm::ortho(-s, s, -s, s, -10.0f, 10.0f);
+        // return flashCoords * proj;
+        return proj;
+        // return m_projection;
     }
 };
 }; // namespace enginepp::graphics::camera

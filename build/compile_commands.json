@@ -7,6 +7,12 @@
 },
 {
   "directory": "/home/donran/dev/github/donran/gamepp/build",
+  "command": "/usr/bin/c++   -std=gnu++23 -o CMakeFiles/gamepp_bin.dir/src/graphics/objects/sprite.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/objects/sprite.cpp",
+  "file": "/home/donran/dev/github/donran/gamepp/src/graphics/objects/sprite.cpp",
+  "output": "CMakeFiles/gamepp_bin.dir/src/graphics/objects/sprite.cpp.o"
+},
+{
+  "directory": "/home/donran/dev/github/donran/gamepp/build",
   "command": "/usr/bin/c++   -std=gnu++23 -o CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/objects/vbo.cpp",
   "file": "/home/donran/dev/github/donran/gamepp/src/graphics/objects/vbo.cpp",
   "output": "CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o"

@@ -1,9 +1,6 @@
 
 #include "graphics/camera/camera.hpp"
-#include "graphics/objects/instanced.hpp"
-#include "graphics/objects/rect.hpp"
 #include "graphics/objects/sprite.hpp"
-#include "graphics/objects/vao.hpp"
 #include "graphics/objects/vbo.hpp"
 #include "graphics/shaders/shader.hpp"
 #include "graphics/shaders/shaders.hpp"
@@ -25,14 +22,15 @@ using namespace enginepp::graphics::textures;
 using namespace enginepp::graphics::shaders;
 
 const int WINDOW_WIDTH = 1024;
-const int WINDOW_HEIGHT = 720;
+const int WINDOW_HEIGHT = 1024;
 const char *WINDOW_TITLE = "GamePP";
 
-#define _MAIN_ASSERT(cond, msg)                                                                                        \
-    if (!(cond)) {                                                                                                     \
-        std::cerr << msg << std::endl;                                                                                 \
-        exit(EXIT_FAILURE);                                                                                            \
+#define _MAIN_ASSERT(cond, msg)        \
+    if (!(cond)) {                     \
+        std::cerr << msg << std::endl; \
+        exit(EXIT_FAILURE);            \
     }
+
 void keyCallback(GLFWwindow *_window, int _key, int _scancode, int _action, int _mods);
 int main(int argc, const char **argv) {
     Window *w = new Window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
@@ -41,53 +39,18 @@ int main(int argc, const char **argv) {
     w->SetForwardCompat(true);
     w->SetProfile(OpenGLProfile::CORE);
 
-    if (!w->Create()) {
-        std::cerr << "failed to create window, exiting" << std::endl;
-        return 1;
-    }
+    _MAIN_ASSERT(w->Create(), "failed to create window, exiting");
     w->SetDebug(true);
-
     w->SetKeyCallback(keyCallback);
 
     glEnable(GL_CULL_FACE);
-
     glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
 
-    float quadVertices[] = {
-        -0.5f, 0.5f,  0.0f, 1.0f, // Top left
-        -0.5f, -0.5f, 0.0f, 0.0f, // Bottom Left
-        0.5f,  -0.5f, 1.0f, 0.0f, // Bottom Right
-
-        -0.5f, 0.5f,  0.0f, 1.0f, // Top left
-        0.5f,  -0.5f, 1.0f, 0.0f, // Bottom right
-        0.5f,  0.5f,  1.0f, 1.0f  // Top right
-    };
-    std::vector<Rectangle> rectinfos = {Rectangle{
-        .position = glm::vec2(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2),
-        .color = glm::vec4(0.25f, 0.50f, 0.75f, 1.0f),
-        .spriteId = 0,
-    }};
-
-    // InstancedBuffer ibo;
-    // ibo.StaticVBO([&quadVertices](VBO &buffer) {
-    //     buffer.Attributes([](struct VertexBufferAttributes *attrs) {
-    //         attrs->Add(0, GL_FLOAT, 2); // Position
-    //         attrs->Add(1, GL_FLOAT, 2); // uv/texcoord
-    //     });
-    //     buffer.BufferData(sizeof(quadVertices) / 4, quadVertices);
-    // });
-    // ibo.InstancedVBO([&rectinfos](VBO &buffer) {
-    //     buffer.Attributes([](struct VertexBufferAttributes *attrs) {
-    //         attrs->Add(2, GL_FLOAT, 2, 1); // Position
-    //         attrs->Add(3, GL_FLOAT, 4, 1); // Color
-    //         attrs->Add(4, GL_INT, 1, 1);   // SpriteID
-    //     });
-    //     buffer.BufferData(rectinfos.size(), &rectinfos[0], GL_DYNAMIC_DRAW);
-    // });
-    // ibo.Enable();
+    std::vector<Sprite> spriteObjs = {Sprite(glm::vec2(0, 0), 0)};
 
     SpriteBuffer sbo;
-    sbo.Buffer(rectinfos);
+    // sbo.Buffer(rectinfos);
+    sbo.Buffer(spriteObjs);
 
     // Texture
     glActiveTexture(GL_TEXTURE0);
@@ -105,21 +68,15 @@ int main(int argc, const char **argv) {
 
     Camera camera(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    // glm::mat4 model = glm::scale(glm::mat4(1.0f), glm::vec3(100.0f, 100.0f, 1.0f));
-    auto scale = glm::scale(glm::mat4(1.0f), glm::vec3(500.0f, 500.0f, 1.0f));
-    auto modelPos = glm::vec3(rectinfos[0].position, 0.0f);
-    auto modelTranslate = glm::translate(glm::mat4(1.0f), modelPos);
-    glm::mat4 model = modelTranslate * scale; // glm::translate(scale, );
     double lastSwitch = glfwGetTime();
     while (!w->ShouldClose()) {
         auto time = glfwGetTime();
         if (time - lastSwitch > 0.5) {
             lastSwitch = time;
-            rectinfos[0].spriteId = (rectinfos[0].spriteId + 1) % (16 * 16);
-            // ibo.InstancedVBO([&rectinfos](VBO &buffer) {
-            //     buffer.UpdateData(rectinfos.size(), &rectinfos[0]);
-            // });
-            sbo.Buffer(rectinfos);
+            // rectinfos[0].spriteId = (rectinfos[0].spriteId + 1) % (16 * 16);
+            // sbo.Buffer(rectinfos);
+            spriteObjs[0].SetSprite((spriteObjs[0].SpriteId() + 1) % (16 * 16));
+            sbo.Buffer(spriteObjs);
         }
         glClear(GL_COLOR_BUFFER_BIT);
         glm::mat4 proj = camera.ProjectionMatrix();
@@ -128,19 +85,17 @@ int main(int argc, const char **argv) {
 
         shaderProgram.UniformMat4f("projection", &proj[0][0]);
         shaderProgram.UniformMat4f("view", &view[0][0]);
-        shaderProgram.UniformMat4f("model", &model[0][0]);
+        // shaderProgram.UniformMat4f("model", &model[0][0]);
 
         glActiveTexture(GL_TEXTURE0);
         testTex->Bind();
-        // ibo.DrawArrays(GL_TRIANGLES, 0, 6, rectinfos.size());
-        sbo.Draw(rectinfos.size());
+        // sbo.Draw(rectinfos.size());
+        sbo.Draw(spriteObjs.size());
 
         w->SwapBuffers();
 
         w->PollEvents();
     }
-
-    // glDeleteVertexArrays(1, &vaoID);
 
     delete w;
 

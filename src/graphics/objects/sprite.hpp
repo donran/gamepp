@@ -1,61 +1,56 @@
-#include "rect.hpp"
+#include <glm/ext/matrix_transform.hpp>
+#include <glm/fwd.hpp>
 #pragma
 #include "instanced.hpp"
 
 namespace enginepp::graphics::objects {
 
+struct Object2D {
+    glm::mat4 model;
+};
+class Sprite {
+  private:
+    struct {
+        struct Object2D obj;
+        unsigned int spriteId;
+    } m_attributes;
+    glm::vec2 m_position;
+
+  public:
+    Sprite(glm::vec2 pos, unsigned int spriteId) {
+        SetPosition(pos);
+        SetSprite(spriteId);
+    }
+    void SetSprite(unsigned int id) {
+        m_attributes.spriteId = id;
+    }
+
+    unsigned int SpriteId() {
+        return m_attributes.spriteId;
+    }
+
+    void SetPosition(glm::vec2 pos) {
+        m_position = pos;
+        m_attributes.obj.model = ModelMatrix(); // * glm::scale(glm::mat4(1.0f), glm::vec3(500.0f, 500.0f, 1.0f));
+    }
+    glm::mat4 ModelMatrix() {
+        auto modelPos = glm::vec3(m_position, 0.0f);
+        auto modelTranslate = glm::translate(glm::mat4(1.0f), modelPos);
+        return modelTranslate;
+    }
+};
 class SpriteBuffer {
+
   private:
     InstancedBuffer m_instancedBuffer;
-    float m_quadVertices[4 * 6] = {
-        -0.5f, 0.5f,  0.0f, 1.0f, // Top left
-        -0.5f, -0.5f, 0.0f, 0.0f, // Bottom Left
-        0.5f,  -0.5f, 1.0f, 0.0f, // Bottom Right
-
-        -0.5f, 0.5f,  0.0f, 1.0f, // Top left
-        0.5f,  -0.5f, 1.0f, 0.0f, // Bottom right
-        0.5f,  0.5f,  1.0f, 1.0f  // Top right
-    };
     bool m_initialized = false;
 
   public:
-    SpriteBuffer() {
-        m_instancedBuffer.StaticVBO([this](VBO &buffer) {
-            buffer.Attributes([](struct VertexBufferAttributes *attrs) {
-                attrs->Add(0, GL_FLOAT, 2); // Position
-                attrs->Add(1, GL_FLOAT, 2); // uv/texcoord
-            });
-            buffer.BufferData(sizeof(m_quadVertices) / 4, m_quadVertices);
-        });
-        m_instancedBuffer.InstancedVBO([](VBO &buffer) {
-            buffer.Attributes([](struct VertexBufferAttributes *attrs) {
-                attrs->Add(2, GL_FLOAT, 2, 1); // Position
-                attrs->Add(3, GL_FLOAT, 4, 1); // Color
-                attrs->Add(4, GL_INT, 1, 1);   // SpriteID
-            });
-        });
-        m_instancedBuffer.Enable();
-    }
-
+    SpriteBuffer();
     ~SpriteBuffer() {
     }
-
-    void Buffer(std::vector<Rectangle> &rectinfos) {
-        // Should this distinction be in the buffer itself?
-        if (!m_initialized) {
-            m_instancedBuffer.InstancedVBO([&rectinfos](VBO &buffer) {
-                buffer.BufferData(rectinfos.size(), &rectinfos[0], GL_DYNAMIC_DRAW);
-            });
-        } else {
-            m_instancedBuffer.InstancedVBO([&rectinfos](VBO &buffer) {
-                buffer.UpdateData(rectinfos.size(), &rectinfos[0]);
-            });
-        }
-    }
-
-    void Draw(GLsizei count) {
-        m_instancedBuffer.DrawArrays(GL_TRIANGLES, 0, sizeof(m_quadVertices) / 4, count);
-    }
+    void Buffer(std::vector<Sprite> &rectinfos);
+    void Draw(GLsizei count);
 };
 
 }; // namespace enginepp::graphics::objects

@@ -1,8 +1,9 @@
-CMakeFiles/gamepp_bin.dir/src/main.cpp.o: \
- /home/donran/dev/github/donran/gamepp/src/main.cpp \
+CMakeFiles/gamepp_bin.dir/src/graphics/objects/sprite.cpp.o: \
+ /home/donran/dev/github/donran/gamepp/src/graphics/objects/sprite.cpp \
  /usr/include/stdc-predef.h \
- /home/donran/dev/github/donran/gamepp/src/graphics/camera/camera.hpp \
- /usr/include/glm/ext/matrix_clip_space.hpp \
+ /home/donran/dev/github/donran/gamepp/src/graphics/objects/sprite.hpp \
+ /usr/include/glm/ext/matrix_transform.hpp \
+ /usr/include/glm/gtc/constants.hpp \
  /usr/include/glm/ext/scalar_constants.hpp \
  /usr/include/glm/detail/setup.hpp /usr/include/c++/13/cassert \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -30,7 +31,8 @@ CMakeFiles/gamepp_bin.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
  /usr/include/c++/13/type_traits \
  /usr/include/glm/ext/scalar_constants.inl /usr/include/c++/13/limits \
- /usr/include/glm/geometric.hpp /usr/include/glm/detail/type_vec3.hpp \
+ /usr/include/glm/gtc/constants.inl /usr/include/glm/geometric.hpp \
+ /usr/include/glm/detail/type_vec3.hpp \
  /usr/include/glm/detail/qualifier.hpp /usr/include/glm/detail/setup.hpp \
  /usr/include/glm/detail/type_vec3.inl \
  /usr/include/glm/detail/compute_vector_relational.hpp \
@@ -123,19 +125,8 @@ CMakeFiles/gamepp_bin.dir/src/main.cpp.o: \
  /usr/include/glm/detail/compute_common.hpp \
  /usr/include/glm/trigonometric.hpp \
  /usr/include/glm/detail/func_trigonometric.inl \
- /usr/include/glm/ext/matrix_clip_space.inl /usr/include/glm/fwd.hpp \
- /usr/include/glm/glm.hpp /usr/include/c++/13/climits \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
- /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
- /usr/include/x86_64-linux-gnu/bits/local_lim.h \
- /usr/include/linux/limits.h \
- /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
- /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
- /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/13/cfloat \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
- /usr/include/glm/vec2.hpp /usr/include/glm/ext/vector_bool2.hpp \
+ /usr/include/glm/matrix.hpp /usr/include/glm/vec2.hpp \
+ /usr/include/glm/ext/vector_bool2.hpp \
  /usr/include/glm/ext/vector_bool2_precision.hpp \
  /usr/include/glm/ext/vector_float2.hpp \
  /usr/include/glm/ext/vector_float2_precision.hpp \
@@ -169,7 +160,10 @@ CMakeFiles/gamepp_bin.dir/src/main.cpp.o: \
  /usr/include/glm/ext/vector_uint4_sized.hpp /usr/include/glm/mat2x2.hpp \
  /usr/include/glm/ext/matrix_double2x2.hpp \
  /usr/include/glm/detail/type_mat2x2.hpp \
- /usr/include/glm/detail/type_mat2x2.inl /usr/include/glm/matrix.hpp \
+ /usr/include/glm/detail/type_mat2x2.inl \
+ /usr/include/glm/ext/matrix_double2x2_precision.hpp \
+ /usr/include/glm/ext/matrix_float2x2.hpp \
+ /usr/include/glm/ext/matrix_float2x2_precision.hpp \
  /usr/include/glm/mat2x3.hpp /usr/include/glm/ext/matrix_double2x3.hpp \
  /usr/include/glm/detail/type_mat2x3.hpp \
  /usr/include/glm/detail/type_mat2x3.inl \
@@ -219,21 +213,7 @@ CMakeFiles/gamepp_bin.dir/src/main.cpp.o: \
  /usr/include/glm/ext/matrix_float4x4.hpp \
  /usr/include/glm/ext/matrix_float4x4_precision.hpp \
  /usr/include/glm/detail/func_matrix.inl \
- /usr/include/glm/ext/matrix_double2x2_precision.hpp \
- /usr/include/glm/ext/matrix_float2x2.hpp \
- /usr/include/glm/ext/matrix_float2x2_precision.hpp \
- /usr/include/glm/packing.hpp /usr/include/glm/detail/func_packing.inl \
- /usr/include/glm/detail/type_half.hpp \
- /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
- /usr/include/glm/detail/func_integer.inl \
- /usr/include/glm/gtc/matrix_transform.hpp \
- /usr/include/glm/ext/matrix_projection.hpp \
- /usr/include/glm/gtc/constants.hpp /usr/include/glm/gtc/constants.inl \
- /usr/include/glm/ext/matrix_projection.inl \
- /usr/include/glm/ext/matrix_transform.hpp \
- /usr/include/glm/ext/matrix_transform.inl \
- /usr/include/glm/gtc/matrix_transform.inl \
- /home/donran/dev/github/donran/gamepp/src/graphics/objects/sprite.hpp \
+ /usr/include/glm/ext/matrix_transform.inl /usr/include/glm/fwd.hpp \
  /home/donran/dev/github/donran/gamepp/src/graphics/objects/instanced.hpp \
  /home/donran/dev/github/donran/gamepp/src/graphics/objects/vao.hpp \
  /home/donran/dev/github/donran/gamepp/src/graphics/objects/vbo.hpp \
@@ -283,7 +263,22 @@ CMakeFiles/gamepp_bin.dir/src/main.cpp.o: \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc /usr/include/c++/13/array \
  /usr/include/c++/13/bits/move_only_function.h \
- /usr/include/c++/13/bits/mofunc_impl.h /usr/include/c++/13/iostream \
+ /usr/include/c++/13/bits/mofunc_impl.h /usr/include/glm/glm.hpp \
+ /usr/include/c++/13/climits \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/13/cfloat \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
+ /usr/include/glm/packing.hpp /usr/include/glm/detail/func_packing.inl \
+ /usr/include/glm/detail/type_half.hpp \
+ /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
+ /usr/include/glm/detail/func_integer.inl /usr/include/c++/13/iostream \
  /usr/include/c++/13/ostream /usr/include/c++/13/ios \
  /usr/include/c++/13/iosfwd /usr/include/c++/13/bits/stringfwd.h \
  /usr/include/c++/13/bits/postypes.h /usr/include/c++/13/cwchar \
@@ -346,14 +341,4 @@ CMakeFiles/gamepp_bin.dir/src/main.cpp.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc \
- /home/donran/dev/github/donran/gamepp/src/graphics/shaders/shader.hpp \
- /usr/include/c++/13/map /usr/include/c++/13/bits/stl_tree.h \
- /usr/include/c++/13/bits/stl_map.h \
- /usr/include/c++/13/bits/stl_multimap.h \
- /home/donran/dev/github/donran/gamepp/src/graphics/shaders/shaders.hpp \
- /home/donran/dev/github/donran/gamepp/src/graphics/textures/texture.hpp \
- /home/donran/dev/github/donran/gamepp/src/graphics/textures/../../stb/image.hpp \
- /home/donran/dev/github/donran/gamepp/src/graphics/window.hpp \
- /usr/include/GLFW/glfw3.h /usr/include/c++/13/utility \
- /usr/include/c++/13/bits/stl_relops.h
+ /usr/include/c++/13/bits/istream.tcc
