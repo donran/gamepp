@@ -1,3 +1,0 @@
-/home/donran/dev/github/donran/gamepp/build/CMakeFiles/gamepp_bin.dir
-/home/donran/dev/github/donran/gamepp/build/CMakeFiles/edit_cache.dir
-/home/donran/dev/github/donran/gamepp/build/CMakeFiles/rebuild_cache.dir
