@@ -4,13 +4,14 @@
 #include <iostream>
 #include <utility>
 
-#define WINDOW_ASSERT(assertion, errormsg)                                                                                                                     \
-    if (!(assertion)) {                                                                                                                                        \
-        std::cerr << errormsg << std::endl;                                                                                                                    \
-        exit(1);                                                                                                                                               \
+#define WINDOW_ASSERT(assertion, errormsg)                                                         \
+    if (!(assertion)) {                                                                            \
+        std::cerr << errormsg << std::endl;                                                        \
+        exit(1);                                                                                   \
     }
 
-void GLAPIENTRY default_DebugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message,
+void GLAPIENTRY default_DebugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
+                                             GLsizei length, const GLchar *message,
                                              const void *userParam) {
     std::cout << "[OpenGL Error](" << type << ") " << message << std::endl;
 }
@@ -62,7 +63,6 @@ class Window {
     }
 
     bool Create() {
-        std::cout << "we got here 5" << std::endl;
         m_window = glfwCreateWindow(m_width, m_height, m_title.c_str(), NULL, NULL);
         if (!m_window) {
             std::cerr << "failed to create window" << std::endl;
@@ -71,7 +71,6 @@ class Window {
         }
         MakeContextCurrent();
 #ifndef __APPLE__
-        std::cout << "we got here 6" << std::endl;
         GLenum err = glewInit();
         if (err != GLEW_OK) {
             std::cerr << "Error: " << glewGetErrorString(err) << std::endl;

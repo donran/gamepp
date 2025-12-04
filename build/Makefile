@@ -153,6 +153,30 @@ src/graphics/objects/vbo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.s
 .PHONY : src/graphics/objects/vbo.cpp.s
 
+src/graphics/shaders/shader.o: src/graphics/shaders/shader.cpp.o
+.PHONY : src/graphics/shaders/shader.o
+
+# target to build an object file
+src/graphics/shaders/shader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o
+.PHONY : src/graphics/shaders/shader.cpp.o
+
+src/graphics/shaders/shader.i: src/graphics/shaders/shader.cpp.i
+.PHONY : src/graphics/shaders/shader.i
+
+# target to preprocess a source file
+src/graphics/shaders/shader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.i
+.PHONY : src/graphics/shaders/shader.cpp.i
+
+src/graphics/shaders/shader.s: src/graphics/shaders/shader.cpp.s
+.PHONY : src/graphics/shaders/shader.s
+
+# target to generate assembly for a file
+src/graphics/shaders/shader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gamepp_bin.dir/build.make CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.s
+.PHONY : src/graphics/shaders/shader.cpp.s
+
 src/graphics/test.o: src/graphics/test.cpp.o
 .PHONY : src/graphics/test.o
 
@@ -261,6 +285,9 @@ help:
 	@echo "... src/graphics/objects/vbo.o"
 	@echo "... src/graphics/objects/vbo.i"
 	@echo "... src/graphics/objects/vbo.s"
+	@echo "... src/graphics/shaders/shader.o"
+	@echo "... src/graphics/shaders/shader.i"
+	@echo "... src/graphics/shaders/shader.s"
 	@echo "... src/graphics/test.o"
 	@echo "... src/graphics/test.i"
 	@echo "... src/graphics/test.s"

@@ -7,6 +7,12 @@
 },
 {
   "directory": "/home/donran/dev/github/donran/gamepp/build",
+  "command": "/usr/bin/c++   -std=gnu++23 -o CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/shaders/shader.cpp",
+  "file": "/home/donran/dev/github/donran/gamepp/src/graphics/shaders/shader.cpp",
+  "output": "CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o"
+},
+{
+  "directory": "/home/donran/dev/github/donran/gamepp/build",
   "command": "/usr/bin/c++   -std=gnu++23 -o CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o -c /home/donran/dev/github/donran/gamepp/src/graphics/test.cpp",
   "file": "/home/donran/dev/github/donran/gamepp/src/graphics/test.cpp",
   "output": "CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o"

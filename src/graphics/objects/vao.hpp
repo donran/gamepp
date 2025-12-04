@@ -29,7 +29,7 @@ class VAO {
     void EnableVertexBufferObjects(std::initializer_list<VBO> list) {
         for (auto el : list) {
             for (auto attr : el.GetAttributes()->attributes) {
-                std::cout << "enabling id " << attr.index << std::endl;
+                // std::cout << "enabling id " << attr.index << std::endl;
                 EnableVertexArrayAttribute(attr.index);
                 if (attr.divisor != 0) {
                     glVertexAttribDivisor(attr.index, attr.divisor);

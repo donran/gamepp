@@ -3,54 +3,6 @@
 #include <iostream>
 #include <memory>
 
-GLuint createTriangle(float _size) {
-    GLuint vaoID;
-    // allocate a VertexArray
-    glGenVertexArrays(1, &vaoID);
-    // now bind a vertex array object for our verts
-    glBindVertexArray(vaoID);
-    // a simple triangle
-    std::array<float, 9> vert; // vertex array
-    vert[0] = -_size;
-    vert[1] = -_size;
-    vert[2] = 0.0f;
-    vert[3] = 0;
-    vert[4] = _size;
-    vert[5] = 0.0f;
-    vert[6] = _size;
-    vert[7] = -_size;
-    vert[8] = 0.0f;
-    // now we are going to bind this to our vbo
-    GLuint vboID;
-    glGenBuffers(1, &vboID);
-    // now bind this to the VBO buffer
-    glBindBuffer(GL_ARRAY_BUFFER, vboID);
-    // allocate the buffer data
-    glBufferData(GL_ARRAY_BUFFER, vert.size() * sizeof(float), &vert[0], GL_STATIC_DRAW);
-    // now fix this to the attribute buffer 0
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-    // enable and bind this attribute (will be inPosition in the shader)
-    glEnableVertexAttribArray(0);
-
-    // Now for the colour
-
-    std::array<float, 9> colour = {1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f};
-
-    GLuint colourvboID;
-    glGenBuffers(1, &colourvboID);
-    // now bind this to the VBO buffer
-    glBindBuffer(GL_ARRAY_BUFFER, colourvboID);
-    // allocate the buffer data
-    glBufferData(GL_ARRAY_BUFFER, colour.size() * sizeof(float), &colour[0], GL_STATIC_DRAW);
-    // now fix this to the attribute buffer 1
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
-    // enable and bind this attribute (will be inColour in the shader)
-    glEnableVertexAttribArray(1);
-    // this basically switches off the current Vertex array object
-    glBindVertexArray(0);
-    return vaoID;
-}
-
 void printInfoLog(const GLuint &_obj, GLenum _mode = GL_COMPILE_STATUS) {
     GLint infologLength = 0;
     GLint charsWritten = 0;

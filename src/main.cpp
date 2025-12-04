@@ -3,6 +3,7 @@
 #include "graphics/objects/rect.hpp"
 #include "graphics/objects/vao.hpp"
 #include "graphics/objects/vbo.hpp"
+#include "graphics/shaders/shader.hpp"
 #include "graphics/shaders/shaders.hpp"
 #include "graphics/test.hpp"
 #include "graphics/textures/texture.hpp"
@@ -20,6 +21,7 @@ using namespace enginepp::graphics;
 using namespace enginepp::graphics::objects;
 using namespace enginepp::graphics::camera;
 using namespace enginepp::graphics::textures;
+using namespace enginepp::graphics::shaders;
 
 const int WINDOW_WIDTH = 1024;
 const int WINDOW_HEIGHT = 720;
@@ -96,11 +98,21 @@ int main(int argc, const char **argv) {
         return EXIT_FAILURE;
     }
 
-    auto shaderID = loadShaderFromStrings(vertex2, fragment2);
-
-    int vertexProjectionLocation = glGetUniformLocation(shaderID, "projection");
-    int vertexViewLocation = glGetUniformLocation(shaderID, "view");
-    int vertexModelLocation = glGetUniformLocation(shaderID, "model");
+    shaders::Program shaderProgram;
+    if (!shaderProgram.Add(GL_VERTEX_SHADER, vertex2)) {
+        std::cout << "failed to compile vertex shader" << std::endl;
+        return EXIT_FAILURE;
+    }
+    if (!shaderProgram.Add(GL_FRAGMENT_SHADER, fragment2)) {
+        std::cout << "failed to compile fragment shader" << std::endl;
+        return EXIT_FAILURE;
+    }
+    if (!shaderProgram.Link()) {
+        std::cout << "failed to link shader program" << std::endl;
+        return EXIT_FAILURE;
+    }
+    shaderProgram.Use();
+    // auto shaderID = loadShaderFromStrings(vertex2, fragment2);
 
     Camera camera(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -123,9 +135,9 @@ int main(int argc, const char **argv) {
         glm::mat4 view = camera.ViewMatrix(glm::vec3(0.0f, 0.0f, 0.0f));
         // view = glm::mat4(1.0f);
 
-        glUniformMatrix4fv(vertexProjectionLocation, 1, GL_FALSE, &proj[0][0]);
-        glUniformMatrix4fv(vertexViewLocation, 1, GL_FALSE, &view[0][0]);
-        glUniformMatrix4fv(vertexModelLocation, 1, GL_FALSE, &model[0][0]);
+        shaderProgram.UniformMat4f("projection", &proj[0][0]);
+        shaderProgram.UniformMat4f("view", &view[0][0]);
+        shaderProgram.UniformMat4f("model", &model[0][0]);
 
         glActiveTexture(GL_TEXTURE0);
         testTex->Bind();
@@ -139,7 +151,6 @@ int main(int argc, const char **argv) {
         w->PollEvents();
     }
 
-    glDeleteProgram(shaderID);
     // glDeleteVertexArrays(1, &vaoID);
 
     delete w;

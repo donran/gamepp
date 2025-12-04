@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/donran/dev/github/donran/gamepp/src/graphics/objects/vbo.cpp" "CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o" "gcc" "CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o.d"
+  "/home/donran/dev/github/donran/gamepp/src/graphics/shaders/shader.cpp" "CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o" "gcc" "CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o.d"
   "/home/donran/dev/github/donran/gamepp/src/graphics/test.cpp" "CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o" "gcc" "CMakeFiles/gamepp_bin.dir/src/graphics/test.cpp.o.d"
   "/home/donran/dev/github/donran/gamepp/src/graphics/textures/texture.cpp" "CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o" "gcc" "CMakeFiles/gamepp_bin.dir/src/graphics/textures/texture.cpp.o.d"
   "/home/donran/dev/github/donran/gamepp/src/main.cpp" "CMakeFiles/gamepp_bin.dir/src/main.cpp.o" "gcc" "CMakeFiles/gamepp_bin.dir/src/main.cpp.o.d"
