@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/gamepp_bin.dir/src/graphics/objects/instanced.cpp.o"
+  "CMakeFiles/gamepp_bin.dir/src/graphics/objects/instanced.cpp.o.d"
   "CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o"
   "CMakeFiles/gamepp_bin.dir/src/graphics/objects/vbo.cpp.o.d"
   "CMakeFiles/gamepp_bin.dir/src/graphics/shaders/shader.cpp.o"

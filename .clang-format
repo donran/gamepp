@@ -3,7 +3,8 @@ AllowShortBlocksOnASingleLine: false
 AllowShortFunctionsOnASingleLine: false
 AlwaysBreakTemplateDeclarations: true
 BreakAfterAttributes: Always
-ColumnLimit: 100
+AllowShortLambdasOnASingleLine: false
+ColumnLimit: 120
 AlignConsecutiveMacros:
   Enabled: true
   AcrossEmptyLines: false

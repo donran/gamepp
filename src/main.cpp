@@ -1,11 +1,12 @@
 
 #include "graphics/camera/camera.hpp"
+#include "graphics/objects/instanced.hpp"
 #include "graphics/objects/rect.hpp"
+#include "graphics/objects/sprite.hpp"
 #include "graphics/objects/vao.hpp"
 #include "graphics/objects/vbo.hpp"
 #include "graphics/shaders/shader.hpp"
 #include "graphics/shaders/shaders.hpp"
-#include "graphics/test.hpp"
 #include "graphics/textures/texture.hpp"
 #include "graphics/window.hpp"
 #include "stb/image.hpp"
@@ -27,6 +28,11 @@ const int WINDOW_WIDTH = 1024;
 const int WINDOW_HEIGHT = 720;
 const char *WINDOW_TITLE = "GamePP";
 
+#define _MAIN_ASSERT(cond, msg)                                                                                        \
+    if (!(cond)) {                                                                                                     \
+        std::cerr << msg << std::endl;                                                                                 \
+        exit(EXIT_FAILURE);                                                                                            \
+    }
 void keyCallback(GLFWwindow *_window, int _key, int _scancode, int _action, int _mods);
 int main(int argc, const char **argv) {
     Window *w = new Window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
@@ -62,57 +68,40 @@ int main(int argc, const char **argv) {
         .spriteId = 0,
     }};
 
-    VAO vertexArray;
-    vertexArray.Bind();
-    VBO quad;
+    // InstancedBuffer ibo;
+    // ibo.StaticVBO([&quadVertices](VBO &buffer) {
+    //     buffer.Attributes([](struct VertexBufferAttributes *attrs) {
+    //         attrs->Add(0, GL_FLOAT, 2); // Position
+    //         attrs->Add(1, GL_FLOAT, 2); // uv/texcoord
+    //     });
+    //     buffer.BufferData(sizeof(quadVertices) / 4, quadVertices);
+    // });
+    // ibo.InstancedVBO([&rectinfos](VBO &buffer) {
+    //     buffer.Attributes([](struct VertexBufferAttributes *attrs) {
+    //         attrs->Add(2, GL_FLOAT, 2, 1); // Position
+    //         attrs->Add(3, GL_FLOAT, 4, 1); // Color
+    //         attrs->Add(4, GL_INT, 1, 1);   // SpriteID
+    //     });
+    //     buffer.BufferData(rectinfos.size(), &rectinfos[0], GL_DYNAMIC_DRAW);
+    // });
+    // ibo.Enable();
 
-    quad.Attributes([](struct VertexBufferAttributes *attrs) {
-        attrs->Add(0, GL_FLOAT, 2); // Position
-        attrs->Add(1, GL_FLOAT, 2); // Color
-    });
-    quad.BufferData(sizeof(quadVertices) / 4, quadVertices);
-
-    VBO instancedVertex;
-    instancedVertex.Attributes([](struct VertexBufferAttributes *attrs) {
-        attrs->Add(2, GL_FLOAT, 2, 1); // Position
-        attrs->Add(3, GL_FLOAT, 4, 1); // Color
-        attrs->Add(4, GL_INT, 1, 1);   // SpriteID
-    });
-    instancedVertex.BufferData(rectinfos.size(), &rectinfos[0], GL_DYNAMIC_DRAW);
-    instancedVertex.Unbind();
-
-    vertexArray.EnableVertexBufferObjects({quad, instancedVertex});
-    vertexArray.Unbind();
+    SpriteBuffer sbo;
+    sbo.Buffer(rectinfos);
 
     // Texture
     glActiveTexture(GL_TEXTURE0);
     auto testTex = new textures::GLTexture();
     auto testTexImage = new enginepp::stb::Image("../assets/lofiEnvironment.png");
-    if (!testTexImage->Ok()) {
-        std::cout << "failed to load texture image\n" << std::endl;
-        return EXIT_FAILURE;
-    }
+    _MAIN_ASSERT(testTexImage->Ok(), "failed to load texture image");
+    _MAIN_ASSERT(testTex->SetTexture(testTexImage) == 0, "failed to load texture image");
 
-    if (testTex->SetTexture(testTexImage) != 0) {
-        std::cout << "failed to setting texture image\n" << std::endl;
-        return EXIT_FAILURE;
-    }
-
+    // shader
     shaders::Program shaderProgram;
-    if (!shaderProgram.Add(GL_VERTEX_SHADER, vertex2)) {
-        std::cout << "failed to compile vertex shader" << std::endl;
-        return EXIT_FAILURE;
-    }
-    if (!shaderProgram.Add(GL_FRAGMENT_SHADER, fragment2)) {
-        std::cout << "failed to compile fragment shader" << std::endl;
-        return EXIT_FAILURE;
-    }
-    if (!shaderProgram.Link()) {
-        std::cout << "failed to link shader program" << std::endl;
-        return EXIT_FAILURE;
-    }
+    _MAIN_ASSERT(shaderProgram.Add(GL_VERTEX_SHADER, vertex2), "failed to compile vertex shader");
+    _MAIN_ASSERT(shaderProgram.Add(GL_FRAGMENT_SHADER, fragment2), "failed to compile fragment shader");
+    _MAIN_ASSERT(shaderProgram.Link(), "failed to link shader program");
     shaderProgram.Use();
-    // auto shaderID = loadShaderFromStrings(vertex2, fragment2);
 
     Camera camera(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -127,8 +116,10 @@ int main(int argc, const char **argv) {
         if (time - lastSwitch > 0.5) {
             lastSwitch = time;
             rectinfos[0].spriteId = (rectinfos[0].spriteId + 1) % (16 * 16);
-            instancedVertex.UpdateData(rectinfos.size(), &rectinfos[0]);
-            // std::cout << "switching to " << rectinfos[0].spriteId << std::endl;
+            // ibo.InstancedVBO([&rectinfos](VBO &buffer) {
+            //     buffer.UpdateData(rectinfos.size(), &rectinfos[0]);
+            // });
+            sbo.Buffer(rectinfos);
         }
         glClear(GL_COLOR_BUFFER_BIT);
         glm::mat4 proj = camera.ProjectionMatrix();
@@ -141,10 +132,8 @@ int main(int argc, const char **argv) {
 
         glActiveTexture(GL_TEXTURE0);
         testTex->Bind();
-        vertexArray.Bind();
-        glDrawArraysInstanced(GL_TRIANGLES, 0, 6, rectinfos.size());
-        vertexArray.Unbind();
-        // testTex->Unbind();
+        // ibo.DrawArrays(GL_TRIANGLES, 0, 6, rectinfos.size());
+        sbo.Draw(rectinfos.size());
 
         w->SwapBuffers();
 
