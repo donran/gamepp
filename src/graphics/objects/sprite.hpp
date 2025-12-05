@@ -5,13 +5,30 @@
 
 namespace enginepp::graphics::objects {
 
-struct Object2D {
+static float _QuadVertices[] = {
+    -0.5f, 0.5f,  0.0f, 1.0f, // Top left
+    -0.5f, -0.5f, 0.0f, 0.0f, // Bottom Left
+    0.5f,  -0.5f, 1.0f, 0.0f, // Bottom Right
+
+    -0.5f, 0.5f,  0.0f, 1.0f, // Top left
+    0.5f,  -0.5f, 1.0f, 0.0f, // Bottom right
+    0.5f,  0.5f,  1.0f, 1.0f  // Top right
+};
+
+struct Quad {
+    float *StaticVertices() {
+        return _QuadVertices;
+    }
+};
+
+struct InstancedObject2D : Quad {
     glm::mat4 model;
 };
+
 class Sprite {
   private:
     struct {
-        struct Object2D obj;
+        struct InstancedObject2D obj;
         unsigned int spriteId;
     } m_attributes;
     glm::vec2 m_position;
