@@ -41,6 +41,20 @@ struct VertexBufferAttributes {
             .divisor = divisor,
         });
     }
+    void Add4(unsigned int index, GLenum type, GLsizei size, unsigned int divisor = 0) {
+        // attrs->Add(2, GL_FLOAT, 4, 1); // Model
+        // attrs->Add(3, GL_FLOAT, 4, 1); // Model
+        // attrs->Add(4, GL_FLOAT, 4, 1); // Model
+        // attrs->Add(5, GL_FLOAT, 4, 1); // Model
+        for (unsigned int i = 0; i < 4; i++) {
+            attributes.push_back((struct VertexAttribute){
+                .index = index + i,
+                .size = size,
+                .type = type,
+                .divisor = divisor,
+            });
+        }
+    }
 };
 
 class VBO {
