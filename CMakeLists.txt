@@ -9,6 +9,9 @@ find_package(glfw3 CONFIG REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(glm REQUIRED)
+find_package(Boost REQUIRED COMPONENTS
+    filesystem
+)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -35,3 +38,16 @@ target_sources(${TARGET_NAME} PUBLIC ${SOURCES} ${LIB_SOURCES})
 
 target_link_libraries(${TARGET_NAME} PRIVATE glfw OpenGL::GL)
 target_link_libraries(${TARGET_NAME} PRIVATE ${PROJECT_LINK_LIBS} GLEW::GLEW glm::glm)
+target_link_libraries(${TARGET_NAME} PRIVATE Boost::filesystem)
+
+
+# Static files
+
+file(GLOB_RECURSE ASSET_FILES ${PROJECT_SOURCE_DIR}/assets/*)
+message(STATUS "Adding assets from ${PROJECT_SOURCE_DIR}/assets/*")
+foreach(item ${ASSET_FILES})
+    file(RELATIVE_PATH item_relative ${PROJECT_SOURCE_DIR}/assets ${item})
+    message(STATUS "\tAdding asset ${item_relative}")
+    configure_file(${item} "${CMAKE_CURRENT_BINARY_DIR}/assets/${item_relative}" COPYONLY)
+
+endforeach()

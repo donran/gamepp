@@ -3,11 +3,13 @@
 #include "graphics/objects/sprite.hpp"
 #include "graphics/objects/vbo.hpp"
 #include "graphics/shaders/shader.hpp"
-#include "graphics/shaders/shaders.hpp"
 #include "graphics/textures/texture.hpp"
 #include "graphics/window.hpp"
+#include "io/files.hpp"
 #include "stb/image.hpp"
+#include "testing.hpp"
 #include <GLFW/glfw3.h>
+#include <boost/filesystem.hpp>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/vector_float2.hpp>
 #include <glm/glm.hpp>
@@ -20,6 +22,9 @@ using namespace enginepp::graphics::objects;
 using namespace enginepp::graphics::camera;
 using namespace enginepp::graphics::textures;
 using namespace enginepp::graphics::shaders;
+using namespace enginepp::io;
+
+namespace fs = boost::filesystem;
 
 const int WINDOW_WIDTH = 1024;
 const int WINDOW_HEIGHT = 1024;
@@ -33,6 +38,7 @@ const char *WINDOW_TITLE = "GamePP";
 
 void keyCallback(GLFWwindow *_window, int _key, int _scancode, int _action, int _mods);
 int main(int argc, const char **argv) {
+    fs::path base_path(".");
     Window *w = new Window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
 
     w->SetVersion(4, 1);
@@ -48,20 +54,25 @@ int main(int argc, const char **argv) {
 
     std::vector<Sprite> spriteObjs = {Sprite(glm::vec2(0, 0), 0)};
 
+    testing();
+
     SpriteBuffer sbo;
-    // sbo.Buffer(spriteObjs);
+    sbo.Buffer(spriteObjs);
 
     // Texture
     glActiveTexture(GL_TEXTURE0);
     auto testTex = new textures::GLTexture();
-    auto testTexImage = new enginepp::stb::Image("../assets/lofiEnvironment.png");
+    // TOOD: ew
+    auto testTexImage = new enginepp::stb::Image((base_path / fs::path("assets/images/lofiEnvironment.png")).c_str());
     _MAIN_ASSERT(testTexImage->Ok(), "failed to load texture image");
-    _MAIN_ASSERT(testTex->SetTexture(testTexImage) == 0, "failed to load texture image");
+    _MAIN_ASSERT(testTex->SetTexture(testTexImage) == 0, "failed to set texture image");
 
     // shader
     shaders::Program shaderProgram;
-    _MAIN_ASSERT(shaderProgram.Add(GL_VERTEX_SHADER, vertex2), "failed to compile vertex shader");
-    _MAIN_ASSERT(shaderProgram.Add(GL_FRAGMENT_SHADER, fragment2), "failed to compile fragment shader");
+    auto vertexSrc = files::read_file((base_path / "assets/shaders/main.vert.glsl").c_str());
+    auto fragmentSrc = files::read_file((base_path / "assets/shaders/main.frag.glsl").c_str());
+    _MAIN_ASSERT(shaderProgram.Add(GL_VERTEX_SHADER, vertexSrc), "failed to compile vertex shader");
+    _MAIN_ASSERT(shaderProgram.Add(GL_FRAGMENT_SHADER, fragmentSrc), "failed to compile fragment shader");
     _MAIN_ASSERT(shaderProgram.Link(), "failed to link shader program");
     shaderProgram.Use();
 

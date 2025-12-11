@@ -17,15 +17,6 @@ static float _QuadVertices[] = {
     0.5f,  0.5f,  1.0f, 1.0f  // Top right
 };
 
-struct Emptiness {
-    float *StaticVertices() {
-        return NULL;
-    }
-    void AddStaticAttributes(struct VertexBufferAttributes *attrs) {
-    }
-    void AddInstancedAttributes(struct VertexBufferAttributes *attrs) {
-    }
-};
 // TODO: One question to ask if we should just allow these objects to
 // use a incrementing attribute index
 struct Quad : public Renderable {

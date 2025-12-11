@@ -41,6 +41,7 @@ void SpriteBuffer::Buffer(std::vector<Sprite> &rectinfos) {
         m_instancedBuffer.InstancedVBO([&rectinfos](VBO &buffer) {
             buffer.BufferData(rectinfos.size(), &rectinfos[0], GL_DYNAMIC_DRAW);
         });
+        m_initialized = true;
     } else {
         m_instancedBuffer.InstancedVBO([&rectinfos](VBO &buffer) {
             buffer.UpdateData(rectinfos.size(), &rectinfos[0]);
