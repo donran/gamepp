@@ -3,7 +3,10 @@
 #include "vbo.hpp"
 #include <GL/glew.h>
 #include <initializer_list>
+
 namespace enginepp::graphics::objects {
+template <typename T>
+concept InheritsVBOConcept = std::is_base_of_v<VBO, T>;
 class VAO {
   private:
     unsigned int m_id;
@@ -26,7 +29,8 @@ class VAO {
         glEnableVertexArrayAttrib(m_id, index);
     }
 
-    void EnableVertexBufferObjects(std::initializer_list<VBO> list) {
+    template <InheritsVBOConcept T>
+    void EnableVertexBufferObjects(std::initializer_list<T> list) {
         for (auto el : list) {
             for (auto attr : el.GetAttributes()->attributes) {
                 // std::cout << "enabling id " << attr.index << std::endl;

@@ -58,9 +58,9 @@ struct VertexBufferAttributes {
 };
 
 class VBO {
-  private:
+  protected:
     unsigned int m_id;
-    struct VertexBufferAttributes m_attributes;
+    struct VertexBufferAttributes m_attributes = {};
 
   public:
     VBO() {
@@ -84,6 +84,8 @@ class VBO {
     void BufferData(GLsizeiptr count, const GLvoid *data, GLenum usage = GL_STATIC_DRAW) {
         // TODO: uh should we warn if attributes aren't created yet?
         Bind();
+        std::cout << "sizer: " << count * m_attributes.size << std::endl;
+        std::cout << "count: " << count << ", size: " << m_attributes.size << std::endl;
         glBufferData(GL_ARRAY_BUFFER, count * m_attributes.size, data, usage);
         // Unbind();
     }
@@ -92,7 +94,7 @@ class VBO {
         // TODO: uh should we warn if attributes aren't created yet?
         Bind();
         glBufferSubData(GL_ARRAY_BUFFER, offset, count * m_attributes.size, data);
-        Unbind();
+        // Unbind();
     }
 
     void Attributes(std::function<void((struct VertexBufferAttributes *))> attrfunc);

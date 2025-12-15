@@ -54,10 +54,10 @@ int main(int argc, const char **argv) {
 
     std::vector<Sprite> spriteObjs = {Sprite(glm::vec2(0, 0), 0)};
 
-    testing();
+    auto pipe_test = testing();
 
-    SpriteBuffer sbo;
-    sbo.Buffer(spriteObjs);
+    // SpriteBuffer sbo;
+    // sbo.Buffer(spriteObjs);
 
     // Texture
     glActiveTexture(GL_TEXTURE0);
@@ -89,13 +89,20 @@ int main(int argc, const char **argv) {
         if (time - lastSwitch > 0.5) {
             lastSwitch = time;
             spriteObjs[0].SetSprite((spriteObjs[0].SpriteId() + 1) % (16 * 16));
-            sbo.Buffer(spriteObjs);
+            // sbo.Buffer(spriteObjs);
         }
         glClear(GL_COLOR_BUFFER_BIT);
 
         glActiveTexture(GL_TEXTURE0);
         testTex->Bind();
-        sbo.Draw(spriteObjs.size());
+        // sbo.Draw(spriteObjs.size());
+
+        update_testing(pipe_test, testTex);
+
+        // Use pipe_test
+        // pipe_test->Render();
+        // pipe_test->Draw({});
+        // Currently drawingin update_testing
 
         w->SwapBuffers();
 

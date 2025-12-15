@@ -25,4 +25,5 @@ void main()
 
     if (t.a == 0.0) { discard; }
     fragColor = t; // vec4(uv,0.0, 1.0); // texture(ourTexture, TexCoord);
+
 }

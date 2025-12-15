@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.12)
 project(gamepp)
 
 set(TARGET_NAME "${PROJECT_NAME}_bin")
+set(CMAKE_BUILD_TYPE Debug)
 
 find_package(glfw3 CONFIG REQUIRED)
 find_package(OpenGL REQUIRED)
