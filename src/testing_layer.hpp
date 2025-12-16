@@ -58,7 +58,7 @@ class GraphicsLayer {
         m_ao.EnableVertexBufferObjects<VertexBufferTwo<TI>>({*m_bufferInstanced});
     }
     void Draw(const std::span<TI> &elements, enginepp::graphics::textures::GLTexture *tex) {
-        std::cout << "draw len: " << elements.size() << std::endl;
+        // std::cout << "draw len: " << elements.size() << std::endl;
         m_ao.Bind();
         tex->Bind();
         glActiveTexture(GL_TEXTURE0);

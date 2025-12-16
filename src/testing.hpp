@@ -68,12 +68,12 @@ class GraphicsLayerFuck {
     }
 };
 
-class GraphicsPipeline {
+class GraphicsPipelineOld {
   private:
     GraphicsLayerFuck *m_layers[32] = {0};
 
   public:
-    GraphicsPipeline() {
+    GraphicsPipelineOld() {
     }
 
     void AddLayer(unsigned char layer_id, std::function<void(GraphicsLayerFuck *)> layer_creation_cb) {
@@ -100,6 +100,12 @@ class GraphicsPipeline {
         }
     }
 };
+
+class GraphicsPipeline {
+    virtual void Draw() = 0;
+    virtual void Update() = 0;
+};
+
 struct OurThingy : public ShaderAttributes {
     glm::mat4 model;
     unsigned int spriteId;

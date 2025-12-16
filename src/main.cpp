@@ -5,6 +5,7 @@
 #include "graphics/shaders/shader.hpp"
 #include "graphics/textures/texture.hpp"
 #include "graphics/window.hpp"
+#include "io/assets.hpp"
 #include "io/files.hpp"
 #include "stb/image.hpp"
 #include "testing.hpp"
@@ -63,16 +64,16 @@ int main(int argc, const char **argv) {
     glActiveTexture(GL_TEXTURE0);
     auto testTex = new textures::GLTexture();
     // TOOD: ew
-    auto testTexImage = new enginepp::stb::Image((base_path / fs::path("assets/images/lofiEnvironment.png")).c_str());
+    auto testTexImage = new enginepp::stb::Image(assets::images::Path("lofiEnvironment.png").c_str());
     _MAIN_ASSERT(testTexImage->Ok(), "failed to load texture image");
     _MAIN_ASSERT(testTex->SetTexture(testTexImage) == 0, "failed to set texture image");
 
     // shader
     shaders::Program shaderProgram;
-    auto vertexSrc = files::read_file((base_path / "assets/shaders/main.vert.glsl").c_str());
-    auto fragmentSrc = files::read_file((base_path / "assets/shaders/main.frag.glsl").c_str());
-    _MAIN_ASSERT(shaderProgram.Add(GL_VERTEX_SHADER, vertexSrc), "failed to compile vertex shader");
-    _MAIN_ASSERT(shaderProgram.Add(GL_FRAGMENT_SHADER, fragmentSrc), "failed to compile fragment shader");
+    _MAIN_ASSERT(shaderProgram.Add(GL_VERTEX_SHADER, assets::shaders::ReadFile("main.vert.glsl")),
+                 "failed to compile vertex shader");
+    _MAIN_ASSERT(shaderProgram.Add(GL_FRAGMENT_SHADER, assets::shaders::ReadFile("main.frag.glsl")),
+                 "failed to compile fragment shader");
     _MAIN_ASSERT(shaderProgram.Link(), "failed to link shader program");
     shaderProgram.Use();
 
@@ -99,13 +100,7 @@ int main(int argc, const char **argv) {
 
         update_testing(pipe_test, testTex);
 
-        // Use pipe_test
-        // pipe_test->Render();
-        // pipe_test->Draw({});
-        // Currently drawingin update_testing
-
         w->SwapBuffers();
-
         w->PollEvents();
     }
 
