@@ -55,50 +55,68 @@ int main(int argc, const char **argv) {
 
     std::vector<Sprite> spriteObjs = {Sprite(glm::vec2(0, 0), 0)};
 
-    auto pipe_test = testing();
+    // auto pipe_test = testing();
 
     // SpriteBuffer sbo;
     // sbo.Buffer(spriteObjs);
 
     // Texture
-    glActiveTexture(GL_TEXTURE0);
-    auto testTex = new textures::GLTexture();
-    // TOOD: ew
-    auto testTexImage = new enginepp::stb::Image(assets::images::Path("lofiEnvironment.png").c_str());
-    _MAIN_ASSERT(testTexImage->Ok(), "failed to load texture image");
-    _MAIN_ASSERT(testTex->SetTexture(testTexImage) == 0, "failed to set texture image");
+    // glActiveTexture(GL_TEXTURE0);
+    // auto testTex = new textures::GLTexture();
+    // // TOOD: ew
+    // auto testTexImage = new enginepp::stb::Image(assets::images::Path("lofiEnvironment.png").c_str());
+    // _MAIN_ASSERT(testTexImage->Ok(), "failed to load texture image");
+    // _MAIN_ASSERT(testTex->SetTexture(testTexImage) == 0, "failed to set texture image");
 
     // shader
-    shaders::Program shaderProgram;
-    _MAIN_ASSERT(shaderProgram.Add(GL_VERTEX_SHADER, assets::shaders::ReadFile("main.vert.glsl")),
-                 "failed to compile vertex shader");
-    _MAIN_ASSERT(shaderProgram.Add(GL_FRAGMENT_SHADER, assets::shaders::ReadFile("main.frag.glsl")),
-                 "failed to compile fragment shader");
-    _MAIN_ASSERT(shaderProgram.Link(), "failed to link shader program");
-    shaderProgram.Use();
+    // shaders::Program shaderProgram;
+    // _MAIN_ASSERT(shaderProgram.Add(GL_VERTEX_SHADER, assets::shaders::ReadFile("main.vert.glsl")),
+    //              "failed to compile vertex shader");
+    // _MAIN_ASSERT(shaderProgram.Add(GL_FRAGMENT_SHADER, assets::shaders::ReadFile("main.frag.glsl")),
+    //              "failed to compile fragment shader");
+    // _MAIN_ASSERT(shaderProgram.Link(), "failed to link shader program");
+    // shaderProgram.Use();
 
     Camera camera(WINDOW_WIDTH, WINDOW_HEIGHT);
-    glm::mat4 proj = camera.ProjectionMatrix();
-    glm::mat4 view = camera.ViewMatrix(glm::vec3(0.0f, 0.0f, 0.0f));
+    // glm::mat4 proj = camera.ProjectionMatrix();
+    // glm::mat4 view = camera.ViewMatrix(glm::vec3(0.0f, 0.0f, 0.0f));
 
-    shaderProgram.UniformMat4f("projection", &proj[0][0]);
-    shaderProgram.UniformMat4f("view", &view[0][0]);
+    // shaderProgram.UniformMat4f("projection", &proj[0][0]);
+    // shaderProgram.UniformMat4f("view", &view[0][0]);
+
+    std::vector<OurThingy> vec;
+    OurThingy testour;
+    testour.SetPosition(glm::vec2(-1.0f, -1.0f));
+    testour.spriteId = 3;
+    OurThingy testour2;
+    testour2.SetPosition(glm::vec2(1.0f, 1.0f));
+    testour2.spriteId = 2;
+    vec.push_back(testour);
+    vec.push_back(testour2);
+
+    SpritePipeline pipeline;
+    pipeline.UpdateCamera(0, camera);
 
     double lastSwitch = 0; // glfwGetTime();
     while (!w->ShouldClose()) {
         auto time = glfwGetTime();
         if (time - lastSwitch > 0.5) {
             lastSwitch = time;
-            spriteObjs[0].SetSprite((spriteObjs[0].SpriteId() + 1) % (16 * 16));
+            vec[0].SetSprite((vec[0].SpriteId() + 1) % (16 * 16));
+            vec[1].SetSprite((vec[1].SpriteId() + 1) % (16 * 16));
             // sbo.Buffer(spriteObjs);
         }
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glActiveTexture(GL_TEXTURE0);
-        testTex->Bind();
+        pipeline.Update(0);
+
+        pipeline.Draw(vec);
+
+        // glActiveTexture(GL_TEXTURE0);
+        // testTex->Bind();
         // sbo.Draw(spriteObjs.size());
 
-        update_testing(pipe_test, testTex);
+        // update_testing(pipe_test, testTex);
 
         w->SwapBuffers();
         w->PollEvents();
